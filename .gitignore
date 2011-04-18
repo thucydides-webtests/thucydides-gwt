@@ -1,0 +1,9 @@
+.project
+.settings
+target
+.idea
+.classpath
+.checkstyle
+*.log
+*.iml
+*.versionsBackup
