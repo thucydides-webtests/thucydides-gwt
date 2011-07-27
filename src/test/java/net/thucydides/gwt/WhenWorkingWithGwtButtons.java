@@ -1,21 +1,22 @@
 package net.thucydides.gwt;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import net.thucydides.gwt.pages.GwtShowcaseButtonPage;
 import net.thucydides.gwt.widgets.GwtButton;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.RenderedWebElement;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.ElementNotDisplayedException;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class WhenWorkingWithGwtButtons {
 
@@ -67,16 +68,16 @@ public class WhenWorkingWithGwtButtons {
     
     @Test
     public void a_test_can_wait_for_a_button_to_become_enabled() {
-        RenderedWebElement mockButton = mock(RenderedWebElement.class);
-        GwtButton disabledButton = new GwtButton("My button", mockButton);        
+        WebElement mockButton = mock(WebElement.class);
+        GwtButton disabledButton = new GwtButton("My button", mockButton);
         when(mockButton.isEnabled()).thenReturn(false, false, true);
         
         disabledButton.waitUntilEnabled();
     }
 
-    @Test(expected=ElementNotDisplayedException.class) 
+    @Test(expected=ElementNotVisibleException.class)
     public void a_test_should_fail_if_the_button_doesnt_become_enabled_after_a_certain_time() {
-        RenderedWebElement mockButton = mock(RenderedWebElement.class);
+        WebElement mockButton = mock(WebElement.class);
         GwtButton disabledButton = new GwtButton("My button", mockButton);
         disabledButton.setWaitForTimeout(100);        
         when(mockButton.isEnabled()).thenReturn(false);

@@ -1,8 +1,7 @@
 package net.thucydides.gwt.widgets;
 
-import org.openqa.selenium.RenderedWebElement;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.ElementNotDisplayedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,18 +42,15 @@ public class GwtButton {
     }
 
     public Boolean isEnabled() {
-        RenderedWebElement renderedButton = (RenderedWebElement) button;
-        return renderedButton.isEnabled();
+        return button.isEnabled();
     }
 
     public Boolean isVisible() {
-        RenderedWebElement renderedButton = (RenderedWebElement) button;
-        return renderedButton.isDisplayed();
+        return button.isDisplayed();
     }
 
     public Boolean isDisabled() {
-        RenderedWebElement renderedButton = (RenderedWebElement) button;
-        return !renderedButton.isEnabled();
+        return !button.isEnabled();
     }
 
     public void click() {
@@ -70,7 +66,7 @@ public class GwtButton {
             waitABit(WAIT_FOR_ELEMENT_PAUSE_LENGTH);
         }
         if (isDisabled()) {
-            throw new ElementNotDisplayedException("The '" + label + "' button should be enabled but was not.");
+            throw new ElementNotVisibleException("The '" + label + "' button should be enabled but was not.");
         }
         return this;
 
