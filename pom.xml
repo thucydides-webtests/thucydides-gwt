@@ -8,7 +8,7 @@
   </parent>
   <groupId>net.thucydides</groupId>
   <artifactId>thucydides-gwt</artifactId>
-  <version>0.3.4-SNAPSHOT</version>
+  <version>0.3.4</version>
   <name>thucydides-gwt</name>
   <url>http://maven.apache.org</url>
   <properties>
